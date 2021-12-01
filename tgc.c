@@ -1,4 +1,7 @@
-#include "gc.h"
+#include "tgc.h"
+
+tgc_t gc = {0};
+tgc_t* gcp_g = &gc;
 
 static size_t tgc_hash(void *ptr) {
   return ((uintptr_t)ptr) >> 3;

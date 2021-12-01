@@ -1,23 +1,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "gc.h"
-
-static tgc_t gc;
+#include "tgc.h"
 
 static void example_function(void) {
-  char *message = tgc_alloc(&gc, 64);
+  char *message = tgc_alloc(gcp_g, 64);
   strcpy(message, "No More Memory Leaks!");
 	puts(message);
 }
 
 int main(int argc, char **argv) {
-  tgc_start(&gc, &argc);
+  tgc_start(gcp_g, &argc);
   
   void (*volatile f)(void) = example_function;
 	f();
 
-  tgc_stop(&gc);
+  tgc_stop(gcp_g);
 }
 
 // static char *BSS_test;

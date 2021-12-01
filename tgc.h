@@ -46,3 +46,5 @@ void tgc_set_flags(tgc_t *gc, void *ptr, int flags);
 int tgc_get_flags(tgc_t *gc, void *ptr);
 void(*tgc_get_dtor(tgc_t *gc, void *ptr))(void*);
 size_t tgc_get_size(tgc_t *gc, void *ptr);
+
+tgc_t* gcp_g;
