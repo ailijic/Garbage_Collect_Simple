@@ -7,3 +7,7 @@ void* Mem_ctor_imp(tgc_t* a_gcp, intmax_t a_size) {
 	assert(vp != NULL);
 	return vp;
 }
+
+void Mem_dtor_imp(tgc_t* a_gcp, void* a_ptr) {
+	tgc_free(a_gcp, a_ptr);
+}

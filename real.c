@@ -1,43 +1,45 @@
 #include "i4/type.h"
-#include "i4/xalloc.h"
+#include "i4/mem.h"
 #include "real.h"
 #include <math.h>
 
-struct Real* Real_ctor(void) { return xmalloc(xsizeof(struct Real)); }
+Real* Real_ctor(void) {
+	Real r;
+	return Mem_ctor(ssizeof(r)); }
 
-void  Real_dtor(struct Real* a_this) { xfree(a_this); }
+void  Real_dtor(Real* a_this) { Mem_dtor(a_this); }
 
-struct Real* Real_init(struct Real* a_this, F64 a_value) {
+Real* Real_init(Real* a_this, F64 a_value) {
   a_this->t = a_value;
   return a_this;
 }
 
-F64 Real_asF64(struct Real a_this) { return a_this.t; }
+F64 Real_asF64(Real a_this) { return a_this.t; }
 
-struct Real Real_neg(struct Real a_value) {
-  return (struct Real){.t = -a_value.t};
+Real Real_neg(Real a_value) {
+  return (Real){.t = -a_value.t};
 }
 
-struct Real Real_e(struct Real a_value) { // e^a_value
-  return (struct Real){.t = exp(a_value.t)};
+Real Real_e(Real a_value) { // e^a_value
+  return (Real){.t = exp(a_value.t)};
 }
 
-struct Real Real_add(struct Real a_lhs, struct Real a_rhs)
+Real Real_add(Real a_lhs, Real a_rhs)
 {
-  return (struct Real){.t = a_lhs.t + a_rhs.t};
+  return (Real){.t = a_lhs.t + a_rhs.t};
 }
 
-struct Real  Real_sub(struct Real a_lhs, struct Real a_rhs)
+Real  Real_sub(Real a_lhs, Real a_rhs)
 {
-  return (struct Real){.t = a_lhs.t - a_rhs.t};
+  return (Real){.t = a_lhs.t - a_rhs.t};
 }
 
-struct Real  Real_mul(struct Real a_lhs, struct Real a_rhs)
+Real  Real_mul(Real a_lhs, Real a_rhs)
 {
-  return (struct Real){.t = a_lhs.t * a_rhs.t};
+  return (Real){.t = a_lhs.t * a_rhs.t};
 }
 
-struct Real  Real_div(struct Real a_lhs, struct Real a_rhs)
+Real  Real_div(Real a_lhs, Real a_rhs)
 {
-  return (struct Real){.t = a_lhs.t / a_rhs.t};
+  return (Real){.t = a_lhs.t / a_rhs.t};
 }
