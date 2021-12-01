@@ -2,11 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "tgc.h"
+#include "test_real.h"
 
 static void example_function(void) {
   char *message = tgc_alloc(gcp_g, 64);
   strcpy(message, "No More Memory Leaks!");
 	puts(message);
+	test_real();
 }
 
 int main(int argc, char **argv) {

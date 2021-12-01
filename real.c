@@ -14,10 +14,12 @@ Real* Real_init(Real* a_this, F64 a_value) {
   return a_this;
 }
 
-F64 Real_asF64(Real a_this) { return a_this.t; }
+F64 Real_asF64(Real* a_this) { return a_this->t; }
 
-Real Real_neg(Real a_value) {
-  return (Real){.t = -a_value.t};
+Real* Real_neg(Real* a_value) {
+	Real* ret = Mem_ctor(ssizeof(*a_value));
+	ret->t = -a_value->t;
+  return ret;
 }
 
 Real Real_e(Real a_value) { // e^a_value
